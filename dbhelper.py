@@ -1,7 +1,7 @@
 import sqlite3
 
-conn = sqlite3.connect("blog.db")
-cursor = conn.cursor()
+conn = None
+cursor = None
 
 CREATE_TABLE_POSTS_QUERY = "CREATE TABLE IF NOT EXISTS posts (poster TEXT, title TEXT, content TEXT, date INTEGER)"
 INSERT_TABLE_POSTS_QUERY = "INSERT INTO posts VALUES (?, ?, ?, ?)"
@@ -14,6 +14,15 @@ INSERT_TABLE_COMMENTS_QUERY = "INSERT INTO comments VALUES (?, ?, ?)"
 GET_TABLE_COMMENTS_QUERY = "SELECT * FROM comments"
 DELETE_COMMENT_QUERY = "DELETE FROM comments WHERE commenter=? AND content=? LIMIT 1"
 
+def connect():
+    global conn, cursor
+    conn = sqlite3.connect("blog.db")
+    cursor = conn.cursor()
+
+def close():
+    global conn
+    conn.close()
+    
 def create_table_posts():
     cursor.execute(CREATE_TABLE_POSTS_QUERY)
     conn.commit()
@@ -52,3 +61,6 @@ def delete_comment(commenter, content):
 def get_comments():
     return cursor.execute(GET_TABLE_COMMENTS_QUERY).fetchall()
 
+connect()
+print get_posts()
+close()
