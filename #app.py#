@@ -6,9 +6,9 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
 def home(titles=None):
-    #dbhelper.create_table_posts()
+    dbhelper.create_table_posts()
     if request.method == "POST":
-        titles = ["DFADGSDG"]
+        titles = dbhelper.get_posts()
         return render_template("home.html",titles=titles)
     else:
         # get stuff from form
@@ -19,23 +19,22 @@ def home(titles=None):
         time = strftime("%a %d %b %Y %X")
         # add stuff from form to database
         
-        #bhelper.insert_post(poster, title, text, time)
+        dbhelper.insert_post(poster, title, text, time)
         # update home page 
-        #titles = dbhelper.get_posts()
+        titles = dbhelper.get_posts()
         return render_template("home.html",titles=titles)
 
 
-#@app.route("/<title>")
-#def blogpost(title=None,post=None,comments=None):
- #   return render_template("blogpost.html",
-  #                          title=title,
-   #                         post=post,
-    #                        comments=comments)
+@app.route("/<title>")
+def blogpost(title=None,post=None,comments=None):
+    return render_template("blogpost.html",
+                            title=title,
+                            post=post,
+                            comments=comments)
 
     
 
 
 if __name__ == "__main__":
     app.debug = True
-    #app.run(host="0.0.0.0", port=1234)
-    app.run()
+    app.run(host="0.0.0.0", port=1234)

@@ -1,0 +1,10 @@
+<center> <h1>Welcome to Hairy Dubstep!</h1> </center>
+<div class="container jumbotron" style="border-radius:30px">
+  <h4></h4>
+<form>
+<form method="GET">
+<input class="form-control" type="text" name="question" placeholder="Search">
+<br>
+<button type="submit" class="btn btn-default btn-primary">Go!</button>
+</form>
+</div>
