@@ -60,7 +60,8 @@ def delete_comment(commenter, content):
 
 def get_comments():
     return cursor.execute(GET_TABLE_COMMENTS_QUERY).fetchall()
-
+'''
 connect()
 print get_posts()
 close()
+'''

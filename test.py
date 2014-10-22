@@ -4,10 +4,26 @@ from time import strftime
 
 test = Flask(__name__)
 
-@test.route("/",methods=["GET"])
+@test.route("/",methods=["GET","POST"])
 def main(titles=None):
-    titles = ["Hello","bye"]
-    return render_template("home.html",titles=titles)
+    if request.method == "GET":
+        dbhelper.connect()
+        dbhelper.create_table_posts();
+        titles = dbhelper.get_posts()
+        dbhelper.close()
+        return render_template("home.html",titles=titles)
+    else:
+        button = request.form["submit"]
+        title = request.form["title"]
+        text = request.form["textarea"]
+        poster = request.form["author"]
+        time = strftime("%a %d %b %Y %X")
+        
+        dbhelper.connect()
+        dbhelper.insert_post(poster, title, text, time)
+        titles = dbhelper.get_posts()
+        dbhelper.close()
+        return render_template("home.html",titles=titles)
 
 if __name__ == "__main__":
     test.debug = True
