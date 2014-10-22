@@ -59,7 +59,7 @@ def delete_comment(post, commenter, content):
     conn.commit()
 
 def get_comments(post):
-    return cursor.execute(GET_TABLE_COMMENTS_QUERY % post).fetchall()
+    return cursor.execute(GET_TABLE_COMMENTS_QUERY, (post,)).fetchall()
 '''
 connect()
 print get_posts()
