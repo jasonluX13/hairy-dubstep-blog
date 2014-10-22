@@ -5,15 +5,13 @@
   <h3>Write yo comment!</h3>
   <h4>{{title}}</h4>
   <h5>by {{author}}</h5>
+  <h6> Comments: </h6>
   {% for comment in comments %}
-        <h5> by {{title[0]}}  {{title[3]}} </h5>
-        <br>
+        <h6> {{comment[1]}}: {{comment[2]}} {{comment[3]}} </h6>
     {% endfor %} 
 
 
   <form method="POST">
-    <input class="form-control" type="text" name="title" placeholder="Title">
-    <br>
     <input class="form-control" type="text" name="author" placeholder="Author">
     <br>
     <textarea class="form-control" name="textarea" style="width:250px;height:150px;" placeholder="Blog Post">
