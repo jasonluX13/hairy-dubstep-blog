@@ -8,7 +8,7 @@ test = Flask(__name__)
 def main(titles=None):
     if request.method == "GET":
         dbhelper.connect()
-        dbhelper.create_table_posts();
+        #dbhelper.create_table_posts();
         titles = dbhelper.get_posts()
         dbhelper.close()
         return render_template("home.html",titles=titles)
@@ -25,7 +25,17 @@ def main(titles=None):
         dbhelper.close()
         return render_template("home.html",titles=titles)
 
+@test.route("/<title>")
+def blogpost(title=None,post=None,comments=None):
+    dbhelper.connect()
+    post = dbhelper.get_post(title)
+    comments = dbhelper.get_comments(title)
+    dbhelper.close()
+    return render_template("blogpost.html",title=title,
+                            post=post,
+                            comments=comments)
+    
 if __name__ == "__main__":
     test.debug = True
-    #app.run(host="0.0.0.0", port=1234)
-    test.run()
+    #app.run(host="0.0.0.0", port=6666)
+    test.run(host="0.0.0.0",port=1212)

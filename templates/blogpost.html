@@ -1,15 +1,16 @@
-<center> <h1>Welcome to Hairy Dubstep!</h1> </center>
+<center> <h1>Welcome to Hairy Dubstep!</h1> 
 
 
 <div class="container jumbotron" style="border-radius:30px">
-  <h4>Write yo blog post!</h4>
+  <h3>Write yo comment!</h3>
   <!--for loop for all titles-->
-   <!-- {% for title in titles %}
-        <h5> {{x}} </h5>
+  {{title}}
+  {% for comment in comments %}
+        <h5> by {{title[0]}}  {{title[3]}} </h5>
         <br>
-    {% endfor %}
-	-->
-<form>
+    {% endfor %} 
+
+
   <form method="POST">
     <input class="form-control" type="text" name="title" placeholder="Title">
     <br>
@@ -22,4 +23,4 @@
   </form>
 
 
-</div>
+</div></center>
