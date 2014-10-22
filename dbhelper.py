@@ -9,10 +9,10 @@ SELECT_TABLE_POSTS_WITH_TITLE = "SELECT title FROM posts WHERE title=?"
 GET_TABLE_POSTS_QUERY = "SELECT * FROM posts"
 DELETE_POST_QUERY = "DELETE FROM posts WHERE poster=? AND title=? LIMIT 1"
 
-CREATE_TABLE_COMMENTS_QUERY = "CREATE TABLE IF NOT EXISTS comments (commenter TEXT, content TEXT, date INTEGER)"
-INSERT_TABLE_COMMENTS_QUERY = "INSERT INTO comments VALUES (?, ?, ?)"
-GET_TABLE_COMMENTS_QUERY = "SELECT * FROM comments"
-DELETE_COMMENT_QUERY = "DELETE FROM comments WHERE commenter=? AND content=? LIMIT 1"
+CREATE_TABLE_COMMENTS_QUERY = "CREATE TABLE IF NOT EXISTS comments (post TEXT, commenter TEXT, content TEXT, date INTEGER)"
+INSERT_TABLE_COMMENTS_QUERY = "INSERT INTO comments VALUES (?, ?, ?, ?)"
+GET_TABLE_COMMENTS_QUERY = "SELECT * FROM comments WHERE post=?"
+DELETE_COMMENT_QUERY = "DELETE FROM comments WHERE post=? AND commenter=? AND content=? LIMIT 1"
 
 def connect():
     global conn, cursor
@@ -50,16 +50,16 @@ def create_table_comments():
     cursor.execute(CREATE_TABLE_COMMENTS_QUERY)
     conn.commit()
 
-def insert_comment(commenter, content, time):
-    cursor.execute(INSERT_TABLE_COMMENTS_QUERY, (commenter, content, time))
+def insert_comment(post, commenter, content, time):
+    cursor.execute(INSERT_TABLE_COMMENTS_QUERY, (post, commenter, content, time))
     conn.commit()
 
-def delete_comment(commenter, content):
-    cursor.execute(DELETE_COMMENT_QUERY, (commenter, content))
+def delete_comment(post, commenter, content):
+    cursor.execute(DELETE_COMMENT_QUERY, (post, commenter, content))
     conn.commit()
 
-def get_comments():
-    return cursor.execute(GET_TABLE_COMMENTS_QUERY).fetchall()
+def get_comments(post):
+    return cursor.execute(GET_TABLE_COMMENTS_QUERY % post).fetchall()
 '''
 connect()
 print get_posts()
