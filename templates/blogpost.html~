@@ -3,8 +3,8 @@
 
 <div class="container jumbotron" style="border-radius:30px">
   <h3>Write yo comment!</h3>
-  <h4>{{title}}</h4>
-  <h5>by {{author}}</h5>
+  <!--for loop for all titles-->
+  {{title}}
   {% for comment in comments %}
         <h5> by {{title[0]}}  {{title[3]}} </h5>
         <br>
