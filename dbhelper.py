@@ -7,6 +7,7 @@ CREATE_TABLE_POSTS_QUERY = "CREATE TABLE IF NOT EXISTS posts (poster TEXT, title
 INSERT_TABLE_POSTS_QUERY = "INSERT INTO posts VALUES (?, ?, ?, ?)"
 SELECT_TABLE_POSTS_WITH_TITLE = "SELECT title FROM posts WHERE title=?"
 GET_TABLE_POSTS_QUERY = "SELECT * FROM posts"
+GET_TABLE_POSTS_WITH_TITLE = "SELECT * FROM posts WHERE title=? LIMIT 1"
 DELETE_POST_QUERY = "DELETE FROM posts WHERE poster=? AND title=? LIMIT 1"
 
 CREATE_TABLE_COMMENTS_QUERY = "CREATE TABLE IF NOT EXISTS comments (post TEXT, commenter TEXT, content TEXT, date INTEGER)"
@@ -38,6 +39,9 @@ def insert_post(poster, title, content, time):
 def has_post_with_title(title):
     return len(cursor.execute(SELECT_TABLE_POSTS_WITH_TITLE, (title,)).fetchall()) > 0
     
+def get_post(title):
+    return cursor.execute(GET_TABLE_POSTS_WITH_TITLE, (title,)).fetchall()
+
 # Returns a tuple of each row of data
 def get_posts():
     return cursor.execute(GET_TABLE_POSTS_QUERY).fetchall()
