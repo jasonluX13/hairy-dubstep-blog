@@ -17,10 +17,10 @@ DELETE_COMMENT_QUERY = "DELETE FROM comments WHERE post=? AND commenter=? AND co
 
 def connect():
     global conn, cursor
-    create_table_posts()
-    create_table_comments()
     conn = sqlite3.connect("blog.db")
     cursor = conn.cursor()
+    create_table_posts()
+    create_table_comments()
 
 def close():
     global conn
