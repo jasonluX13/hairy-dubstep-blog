@@ -1,15 +1,21 @@
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+{% extends "base.html" %} 
+
+{% block bodycontent %}
+
+<!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 <body bgcolor="#01DF74">
 <center> <h1>Welcome to Hairy Dubstep!</h1> 
 <form action="/">
     <button type="submit" class="pure-button pure-button-primary" name="home">
         Home</button>
     </form>
-
+-->
 
 <div class="container jumbotron" style="border-radius:30px">
   <hr>
-  <h3>{{title}} </h3>
+  <h8 class="post-title"><a href="/"> Homepage </a></h8>
+        
+  <h1>{{title}} </h1>
   <h4>by {{author}}</h4>
   <p>
   <h5> {{post[0][2]}} </h5>
@@ -17,7 +23,7 @@
   <hr>
   <h4> Comments: </h4>
   {% for comment in comments %}
-        <h6> {{comment[1]}}: {{comment[2]}} {{comment[3]}} </h6>
+        <h6> <b>{{comment[1]}}</b>: {{comment[2]}} on {{comment[3]}} </h6>
     {% endfor %} 
     <form class="pure-form pure-form-stacked" method = "POST" style="background-color:808089">
     <fieldset>
@@ -27,11 +33,10 @@
         <label for="author">Author</label>
         <input class="form-control" type="text" name="author" placeholder="Author">
         <label for= "blog">Comment</label>
-        <textarea class="form-control" name="textarea" style="width:250px;height:150px;" placeholder="Comment">
-        </textarea>
+        <center><textarea class="form-control" name="textarea" style="width:250px;height:150px;" placeholder="Comment">
+        </textarea></center>
         <button type="submit" class="pure-button pure-button-primary" name="submit">
         Comment!</button>
-        
     </fieldset>
     </form>
     <br><br>
@@ -41,3 +46,5 @@
 
 </div></center>
 </body>
+
+{% endblock bodycontent %} 

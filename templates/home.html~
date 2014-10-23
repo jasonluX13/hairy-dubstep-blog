@@ -1,25 +1,51 @@
-<center> <h1>Welcome to Hairy Dubstep!</h1> </center>
+<html>
+<head>
+<title> Hairy Dubstep </title>
+</head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+<link rel="stylesheet" href="/combo/1.17.16?/css/layouts/blog.css">
+
+<body bgcolor="#01DF74">
+<center> <h1>Welcome to Hairy Dubstep!</h1> 
+
+<div class="content pure-u-1 pure-u-md-3-4">
+        <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">Write yo blog post!</h1>
+
+                <!-- A single blog post -->
+                {% for title in titles %}
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title"><a href="/{{title[1]}}"> {{title[1]}} </a></h2>
+
+                        <p class="post-meta">
+                           by {{title[0]}}  {{title[3]}}
+                        </p>
+                    </header>
+                </section>
+                {% endfor %}
+            </div>
+<br><br>
+    <form class="pure-form pure-form-stacked" method = "POST" style="background-color:808089">
+    <fieldset>
+        
+        <legend><b>Write yo blog post!</b></legend>
+
+        <label for="title">Title</label>
+        <input class="form-control" type="text" name="title" placeholder="Title">
+
+        <label for="author">Author</label>
+        <input class="form-control" type="text" name="author" placeholder="Author">
+        <label for= "blog">Blog Text</label>
+        <textarea class="form-control" name="textarea" style="width:250px;height:150px;" placeholder="Blog Post">
+        </textarea>
+        <button type="submit" class="pure-button pure-button-primary" name="submit">Post!</button>
+    </fieldset>
+    </form>
 
 
-<div class="container jumbotron" style="border-radius:30px">
-  <h4>Write yo blog post!</h4>
-  <!--for loop for all titles-->
-   <!-- {% for title in titles %}
-        <h5> {{x}} </h5>
-        <br>
-    {% endfor %}
-	-->
-<form>
-  <form method="POST">
-    <input class="form-control" type="text" name="title" placeholder="Title">
-    <br>
-    <input class="form-control" type="text" name="author" placeholder="Author">
-    <br>
-    <textarea class="form-control" name="textarea" style="width:250px;height:150px;" placeholder="Blog Post">
-    </textarea>
-    <br>
-    <button type="submit" class="btn btn-default btn-primary" name="submit">Post!</button>
-  </form>
 
-
-</div>
+</div></center>
+</body></html>
